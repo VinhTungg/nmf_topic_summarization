@@ -79,14 +79,14 @@ def _count_units(text):
 
 
 def compression_ratio(original, summary):
-    """Tỷ lệ nén = độ dài tóm tắt / độ dài gốc (0-1, càng nhỏ càng nén mạnh).
-
-    Nếu báo cáo muốn dùng "mức giảm" thì lấy 1 - compression_ratio.
+    """Tỷ lệ nén = 1 - (độ dài tóm tắt / độ dài gốc) (0-1, càng lớn càng nén mạnh).
+    
+    Định nghĩa mới giúp giá trị tỷ lệ thuận với mức độ nén.
     """
     n_orig = _count_units(original)
     if n_orig == 0:
         return 0.0
-    return _count_units(summary) / n_orig
+    return 1.0 - (_count_units(summary) / n_orig)
 
 
 # ---------------------------------------------------------------------------
